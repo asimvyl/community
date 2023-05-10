@@ -1,0 +1,118 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block title %}
+Register & Login 
+{% endblock title %}
+
+{% block content %}
+{% if page == "register" %}
+<!-- 
+<form action="{% url 'register_page' %}" method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+
+<input type="submit" value="Register">
+</form> 
+<p> have a account?<a href="{% url 'login_page' %}">Login here</a></p> -->
+
+
+<form action="{% url 'register_page' %}" method="POST">
+  {% csrf_token %}
+<section  style="background-color: #eee;">
+    <div class="container pt-2">
+      <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-lg-12 col-xl-11">
+          <div class="card text-black" style="border-radius: 25px;">
+            <div class="card-body p-md-5">
+              <div class="row justify-content-center">
+                <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+  
+                  <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
+  
+                     {% for field in form %}
+                    <div class="d-flex flex-row align-items-center mb-5">
+                      <div class="form-outline mb-0 text-center">
+                        <!-- <input type="text" id="form3Example1c" class="form-control" /> -->
+                        {{field}}
+                        <label class="form-label" for="form3Example1c">{{field.label}}</label>
+                      </div>
+                    </div>
+
+                    {% for error in field.errors %}
+                    <p style="color: red;">{{error}}</p>
+                    {% endfor %}
+
+                  {% endfor %}
+
+                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                      <div class="input-group">
+                        <input type="submit" value="Register" class="btn btn-primary rounded-pill">
+                      </div>
+                        </div>
+                        <p class=> have a account ?<a href="{% url 'login_page' %}" class="text-secondary fw-bold"> Login here</a></p>  
+  
+                </div>
+                <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+  
+                  <img src="{% static 'images/firma.jpg' %}"
+                    class="img-fluid rounded" alt="Sample image">
+  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</form>
+
+  {% else %}
+
+<!-- login form -->
+
+<form action="{% url 'login_page' %}" method="POST">
+    {% csrf_token %}
+    <div class="container py-2 ">
+      <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div class="card bg-warning text-secondary" style="border-radius: 1rem;">
+            <div class="card-body p-2 text-center">
+  
+              <div class="mb-md-2 mt-md-2 pb-2">
+  
+                <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
+                <p class="text-white-50 mb-2">Please enter your login and password!</p>
+  
+                <div class="form-outline form-white mb-4">
+                  <input type="text" name="username" id="typeEmailX" class="form-control form-control-lg" placeholder="Enter your username" />
+                  <label class="form-label" for="typeEmailX">Username</label>
+                </div>
+  
+                <div class="form-outline form-white mb-4">
+                  <input type="password" name="password" id="typePasswordX" class="form-control form-control-lg" placeholder="Enter your password" />
+                  <label class="form-label" for="typePasswordX">Password</label>
+                </div>
+  
+                <p class="small mb-2 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>
+  
+                <button class="btn btn-outline-light btn-md px-3" type="submit">Login</button>
+  
+        
+              </div>
+  
+              <div>
+                <p class="mb-0">Don't have an account? <a href="{% url 'register_page' %}" class="text-white-50 fw-bold">Sign Up</a>
+                </p>
+              </div>
+  
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  
+{% endif %}
+{% endblock content %}

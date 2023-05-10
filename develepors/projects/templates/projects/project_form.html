@@ -1,0 +1,89 @@
+{% extends 'main.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+Form
+{% endblock title %}
+
+{% comment %} {% block content %} {% endcomment %}
+{% comment %} 
+<h1>Form</h1>
+<form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit">
+</form>
+
+<main class="formPage my-xl">
+    <div class="content-box">
+        <div class="formWrapper">
+            <a class="backButton" href="#"><i class="im im-angle-left"></i></a>
+            <br>
+
+            <form class="form" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <!-- Input:Text -->
+                {% for field  in form %}
+                <div class="form__field">
+                    <label for="formInput#text">{{field.label}}</label>
+                    {{field}}
+                </div>
+                {% endfor %}
+                <input class="btn btn--sub btn--lg  my-md" type="submit" value="Submit" />
+            </form>
+        </div>
+    </div>
+</main> {% endcomment %}
+
+
+
+{% block content %}
+  <main class="formPage my-xl mt-2">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+          <div class="card">
+            <div class="card-body">
+              <a class="backButton" href="#"><i class="bi bi-arrow-left"></i></a>
+              <br>
+
+              {% comment %} <form class="form" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                <!-- Input:Text -->
+                {% for field in form %}
+                  <div class="mb-3">
+                    <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                    {% if field.widget.field %}
+                      {{ field|crispy }}
+                    {% else %}
+                      {{ field }}
+                    {% endif %}
+                  </div>
+                {% endfor %}
+                <button class="btn btn-primary btn-lg my-md" type="submit">Submit</button>
+              </form> {% endcomment %}
+
+
+              <form class="form" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form|crispy }}    
+                <div class="d-flex justify-content-center">
+                    <button class="btn btn-primary text-center btn-lg rounded-pill my-3" type="submit">Submit</button>
+                  </div>
+                  
+              </form>
+
+
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+
+
+{% endblock content %}

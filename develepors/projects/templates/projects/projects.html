@@ -1,0 +1,56 @@
+{% extends 'main.html' %}
+
+{% block title %}
+Projects
+{% endblock title %}
+
+{% block content %}
+  
+<!-- search bar -->
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-12">
+      <h2 class="text-center font-weight-bold text-primary pt-2">SEARCH FOR PROJECTS</h2>
+    </div>
+    <div class="col-md-12">
+      <div class="d-flex">
+        <div class="input-group">
+          <input class="form-control form-control-sm rounded" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success mx-2 rounded-pill" type="submit">Search</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- card -->
+ 
+<div class="container text-center">
+  {% for project in projects %}
+  <div class="card text-center mx-3 my-3" style="width: 18rem; display:inline-block">
+    <a href="{% url 'project' project.id %}" class="project">
+      <img class="card-img-top project__thumbnail" src="{{ project.featured_image.url }}" alt="project thumbnail">
+    </a>
+    <div class="card-body" style="background-color: #0DBD44;">
+      <h5 class="card-title">{{ project.title }}</h5>
+      <p>
+        <a class="project__author" href="{% url 'user_profile' project.owner %}">
+          By {{ project.owner.name }}
+        </a>
+      </p>
+      <p class="card-text project--rating text-center">
+        <span style="font-weight: bold;">{{ project.vote_ratio }}%</span> Postitive Feedback ({{ project.vote_total }} vote{{ project.vote_total|pluralize:"s" }})
+      </p>
+    </div>
+  </div>
+  {% endfor %}
+  <div class="project__tags">
+    {% for tag in project.tags.all %}
+    <span class="badge bg-warning">{{ tag }}</span>
+    {% endfor %}
+  </div>
+</div>
+  
+
+{% endblock content %}

@@ -1,0 +1,57 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block title %}
+Profile
+{% endblock title %}
+
+{% block content %}
+
+
+
+  <section class="team-section py-5">
+    <div class="container">
+	    <div class="row justify-content-center">
+        {% for profile in profiles %}
+		    <div class="col-12 col-md-6">
+			    <div class="card border-0 shadow-lg pt-5 my-5 position-relative">
+				    <div class="card-body p-4">
+					    <div class="member-profile position-absolute w-100 text-center">
+					      <a href="{% url 'user_profile' profile.id %}">
+                  <img class="rounded-circle mx-auto d-inline-block shadow-sm" src="{{profile.profile_image.url}}" alt="">
+                </a>
+                
+				        </div>
+					    <div class="card-text pt-1">
+						    <h5 class="member-name mb-0 text-center text-warning font-weight-bold">{{profile.name}}</h5>
+						    <div class="mb-3 text-center">{{profile.short_intro}}</div>
+						    <div>{{profile.bio|slice:"150"}}</div>
+					    </div>
+				    </div><!--//card-body-->
+				    <div class="card-footer theme-bg-primary border-0 text-center">
+              {% for skill  in profile.skill_set.all %}
+                <span class="badge bg-primary">
+                  <small>{{skill}}</small>
+                </span>
+                {% endfor %}
+               
+				    </div><!--//card-footer-->
+			    </div><!--//card-->
+		    </div><!--//col-->
+
+
+    {% endfor %}
+        
+     
+		    
+
+	    
+    </div>
+    
+</section>  
+
+
+
+
+{% endblock content %}
+
+

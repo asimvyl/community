@@ -1,0 +1,48 @@
+{% extends 'main.html ' %}
+
+{% block title %}
+project
+{% endblock title %}
+
+{% block content %}
+
+{% comment %} <img style="max-width:px" src="{{ projectobj.featured_image.url }}">
+
+{{projectobj.title}}
+<br>
+{% for tag  in tags %}
+<span class="badge bg-warning">{{tag}}</span>
+{% endfor %}
+<br>
+{{projectobj.description}} {% endcomment %}
+
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 bg-secondary">
+          <h3 class="singleProject__subtitle">Tools &amp; Stacks</h3>
+          <div class="singleProject__toolStack">
+            {% for tag  in tags %}
+            <span class="badge bg-warning">{{tag}}</span>
+            {% endfor %}
+          </div>
+        </div>
+
+
+      <div class="col-6 bg-warning">
+
+            <img class="img-fluid" src="{{ projectobj.featured_image.url }}" alt="portfolio thumbnail"/>
+            <a href="profile.html" class="singleProject__developer">hsduhsuhcudsjhbcjsbchjasgj</a>
+            <h2 class="singleProject__title">{{projectobj.title}}</h2>
+            <h3 class="singleProject__subtitle">About the Project</h3>
+            <div class="singleProject__info">
+                {{projectobj.description}} 
+            </div>
+      </div>
+  
+              
+              
+            
+              
+   
+{% endblock content %}
